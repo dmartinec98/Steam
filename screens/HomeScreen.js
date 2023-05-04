@@ -47,16 +47,20 @@ const HomeScreen = () => {
           title="Recommended"
           description="Primjer necega kaj bu priakzano"
         />
-        <FeaturedRow
-          id="123123"
-          title="Recommended"
-          description="Primjer necega kaj bu priakzano"
-        />
-        <FeaturedRow
-          id="123123"
-          title="Recommended"
-          description="Primjer necega kaj bu priakzano"
-        />
+        <View className="flex-row justify-around py-5 ">
+          <Text className="border-solid border-2 border-black rounded-full py-1 px-2">
+            NEW
+          </Text>
+          <Text className="border-solid border-2 border-black rounded-full py-1 px-2">
+            TRENDING
+          </Text>
+          <Text className="border-solid border-2 border-black rounded-full py-1 px-2">
+            TOP
+          </Text>
+          <Text className="border-solid border-2 border-black rounded-full py-1 px-2">
+            UPCOMING
+          </Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
