@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 
-import HeaderComponent from "../components/HeaderComponent";
+import HeaderComponent from "../components/HomeHeaderComponent";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 
@@ -19,6 +19,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      <HeaderComponent />
       <ScrollView
         className="bg-gray-100"
         contentContainerStyle={{

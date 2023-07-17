@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
 import WishlistScreen from "./screens/WishlistScreen";
 import WalletScreen from "./screens/WalletScreen";
-import HeaderComponent from "./components/HeaderComponent";
+import HeaderComponent from "./components/HomeHeaderComponent";
 import {
   BellIcon,
   EllipsisVerticalIcon,
@@ -12,7 +12,10 @@ import {
   Bars3Icon,
   NewspaperIcon,
   HomeIcon,
+  ChatBubbleBottomCenterIcon,
 } from "react-native-heroicons/outline";
+import SettingsScreen from "./screens/SettingsScreen";
+import NotificationScreen from "./screens/NotificationScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -20,7 +23,6 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <HeaderComponent />
       <Tab.Navigator
         screenOptions={{ headerShown: false, tabBarShowLabel: false }}
       >
@@ -47,16 +49,18 @@ export default function App() {
         />
         <Tab.Screen
           name="Wallet2"
-          component={WalletScreen}
+          component={NotificationScreen}
           options={{
             tabBarIcon: () => <BellIcon color="#000000" size={20} />,
           }}
         />
         <Tab.Screen
-          name="Wallet3"
-          component={WalletScreen}
+          name="Settings"
+          component={SettingsScreen}
           options={{
-            tabBarIcon: () => <Bars3Icon color="#000000" size={20} />,
+            tabBarIcon: () => (
+              <ChatBubbleBottomCenterIcon color="#000000" size={20} />
+            ),
           }}
         />
       </Tab.Navigator>
