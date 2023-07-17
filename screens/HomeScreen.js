@@ -26,7 +26,6 @@ const HomeScreen = () => {
           paddingBottom: 100,
         }}
       >
-        <Text>Categories</Text>
         <Categories />
 
         <FeaturedRow

@@ -16,6 +16,7 @@ import {
 } from "react-native-heroicons/outline";
 import SettingsScreen from "./screens/SettingsScreen";
 import NotificationScreen from "./screens/NotificationScreen";
+import ChatScreen from "./screens/ChatScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -55,8 +56,8 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Settings"
-          component={SettingsScreen}
+          name="Chat"
+          component={ChatScreen}
           options={{
             tabBarIcon: () => (
               <ChatBubbleBottomCenterIcon color="#000000" size={20} />
