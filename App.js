@@ -17,6 +17,7 @@ import {
 import SettingsScreen from "./screens/SettingsScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import ChatScreen from "./screens/ChatScreen";
+import AppSettingsScreen from "./screens/AppSettingsScreen";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -29,6 +30,10 @@ export default function App() {
       >
         <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
         <Stack.Screen name="Settings" component={SettingsScreen}></Stack.Screen>
+        <Stack.Screen
+          name="AppSettings"
+          component={AppSettingsScreen}
+        ></Stack.Screen>
       </Stack.Navigator>
     );
   };
