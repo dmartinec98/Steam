@@ -23,17 +23,11 @@ const TopNav = () => {
   return (
     <SafeAreaView className="bg-white pt-10">
       <View className="flex-row items-center space-x-2 pb-2 mx-4">
-        <View className="flex-row flex-1 space-x-2  bg-gray-200 p-3 items-center h-10">
+        <View className="flex-row flex-1 space-x-2  bg-gray-200 p-3 items-center h-10 rounded-md">
           <TextInput className="flex-1" placeholder="Search" />
           <MagnifyingGlassIcon color="#000000" size={20} />
         </View>
-        <EllipsisVerticalIcon
-          onPress={() => {
-            navigation.navigate("AppSettings", {});
-          }}
-          color="#000000"
-          size={20}
-        />
+
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Settings", {});
@@ -41,7 +35,7 @@ const TopNav = () => {
         >
           <Image
             source={{ uri: "https://links.papareact.com/wru" }}
-            className="h-10 w-10 bg-gray-300 p-4"
+            className="h-10 w-10 bg-gray-300 p-4 rounded-md"
           />
         </TouchableOpacity>
       </View>

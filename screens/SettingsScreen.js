@@ -13,7 +13,7 @@ import HeaderComponent from "../components/HeaderComponent";
 const SettingsScreen = () => {
   return (
     <View>
-      <HeaderComponent screenName={"Account Settings"} />
+      <HeaderComponent screenName={"Settings"} />
       <View className="flex-row">
         <HomeIcon color="#000000" size={20} />
         <Text className="pl-3">SettingsScreen</Text>
