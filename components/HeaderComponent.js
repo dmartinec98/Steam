@@ -11,7 +11,7 @@ const HeaderComponent = ({ screenName }) => {
       <View className="flex-row text-center space-x-2 pb-2 mx-4">
         <ArrowLeftIcon
           onPress={() => {
-            navigation.navigate("Home", {});
+            navigation.navigate("HomeScreen", {});
           }}
           color="#000000"
           size={20}

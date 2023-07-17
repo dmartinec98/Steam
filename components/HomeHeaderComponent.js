@@ -28,7 +28,9 @@ const TopNav = () => {
           <MagnifyingGlassIcon color="#000000" size={20} />
         </View>
         <EllipsisVerticalIcon color="#000000" size={20} />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+            navigation.navigate("Settings", {});
+          }}>
           <Image
             source={{ uri: "https://links.papareact.com/wru" }}
             className="h-10 w-10 bg-gray-300 p-4"

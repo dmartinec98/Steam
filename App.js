@@ -18,10 +18,21 @@ import SettingsScreen from "./screens/SettingsScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import ChatScreen from "./screens/ChatScreen";
 
-const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
-
 export default function App() {
+  const Tab = createBottomTabNavigator();
+  const Stack = createNativeStackNavigator();
+
+  const HomeStack = () => {
+    return (
+      <Stack.Navigator
+        screenOptions={{ headerShown: false, tabBarShowLabel: false }}
+      >
+        <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
+        <Stack.Screen name="Settings" component={SettingsScreen}></Stack.Screen>
+      </Stack.Navigator>
+    );
+  };
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -29,7 +40,7 @@ export default function App() {
       >
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={HomeStack}
           options={{
             tabBarIcon: () => <HomeIcon color="#000000" size={20} />,
           }}
