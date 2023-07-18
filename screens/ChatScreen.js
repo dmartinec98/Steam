@@ -6,14 +6,14 @@ import ChatListItem from "../components/ChatListItem";
 
 const ChatScreen = () => {
   return (
-    <SafeAreaView>
+    <>
       <HeaderComponent screenName={"Chat"} />
       <ScrollView>
         <ChatListItem />
         <ChatListItem />
         <ChatListItem />
       </ScrollView>
-    </SafeAreaView>
+    </>
   );
 };
 

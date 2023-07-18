@@ -54,13 +54,6 @@ export default function App() {
         />
         <Tab.Screen
           name="Wallet"
-          component={WalletScreen}
-          options={{
-            tabBarIcon: () => <ShieldCheckIcon color="#000000" size={20} />,
-          }}
-        />
-        <Tab.Screen
-          name="Wallet2"
           component={NotificationScreen}
           options={{
             tabBarIcon: () => <BellIcon color="#000000" size={20} />,
