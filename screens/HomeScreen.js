@@ -9,7 +9,7 @@ import {
 import React from "react";
 
 import HeaderComponent from "../components/HomeHeaderComponent";
-import Categories from "../components/Categories";
+
 import FeaturedRow from "../components/FeaturedRow";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -26,8 +26,6 @@ const HomeScreen = () => {
           paddingBottom: 100,
         }}
       >
-        <Categories />
-
         <FeaturedRow
           id="123123"
           title="Recommended"

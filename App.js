@@ -29,6 +29,7 @@ export default function App() {
       >
         <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
         <Stack.Screen name="Settings" component={SettingsScreen}></Stack.Screen>
+        <Stack.Screen name="Wallet" component={WalletScreen}></Stack.Screen>
       </Stack.Navigator>
     );
   };
@@ -53,7 +54,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Wallet"
+          name="Notification"
           component={NotificationScreen}
           options={{
             tabBarIcon: () => <BellIcon color="#000000" size={20} />,
