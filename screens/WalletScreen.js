@@ -6,7 +6,23 @@ const WalletScreen = () => {
   return (
     <View>
       <HeaderComponent screenName={"Wallet"} />
-      <Text>WalletScreen</Text>
+      <View className="bg-gray-300 mb-3">
+        <Text className="text-center">Your ballance</Text>
+        <Text className="text-center">$100</Text>
+      </View>
+
+      <View className="flex-row justify-around bg-gray-200 mb-1 p-1">
+        <Text className="p-3">$10</Text>
+        <Text className="rounded-md bg-blue-400 p-3">Buy</Text>
+      </View>
+      <View className="flex-row justify-around bg-gray-200 mb-1 p-1">
+        <Text className="p-3">$20</Text>
+        <Text className="rounded-md bg-blue-400 p-3">Buy</Text>
+      </View>
+      <View className="flex-row justify-around bg-gray-200 mb-1 p-1">
+        <Text className="p-3">$30</Text>
+        <Text className="rounded-md bg-blue-400 p-3">Buy</Text>
+      </View>
     </View>
   );
 };

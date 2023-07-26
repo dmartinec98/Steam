@@ -1,12 +1,11 @@
 import { View, Text, ScrollView } from "react-native";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import React from "react";
-import GameCard from "./GameCard";
+import FeaturedGameCard from "./FeaturedGameCard";
 
 const FeaturedRow = ({ title, description, featuredCategory }) => {
   return (
     <View>
-      
       <ScrollView
         horizontal
         contentContainerStyle={{
@@ -15,28 +14,28 @@ const FeaturedRow = ({ title, description, featuredCategory }) => {
         showsHorizontalScrollIndicator={false}
         className="pt-4"
       >
-        <GameCard
+        <FeaturedGameCard
           id={123}
           imgUrl="https://links.papareact.com/gn7"
           title="aaa"
           rating={4.5}
           ganre="action"
         />
-        <GameCard
+        <FeaturedGameCard
           id={123}
           imgUrl="https://links.papareact.com/gn7"
           title="aaa"
           rating={4.5}
           ganre="action"
         />
-        <GameCard
+        <FeaturedGameCard
           id={123}
           imgUrl="https://links.papareact.com/gn7"
           title="aaa"
           rating={4.5}
           ganre="action"
         />
-        <GameCard
+        <FeaturedGameCard
           id={123}
           imgUrl="https://links.papareact.com/gn7"
           title="aaa"

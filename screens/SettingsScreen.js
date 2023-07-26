@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import {
   BellIcon,
@@ -7,24 +7,50 @@ import {
   Bars3Icon,
   NewspaperIcon,
   HomeIcon,
+  UserPlusIcon,
 } from "react-native-heroicons/outline";
 import HeaderComponent from "../components/HeaderComponent";
+import { useNavigation } from "@react-navigation/native";
 
 const SettingsScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <View>
       <HeaderComponent screenName={"Settings"} />
-      <View className="flex-row">
-        <HomeIcon color="#000000" size={20} />
-        <Text className="pl-3">SettingsScreen</Text>
-      </View>
-      <View className="flex-row">
-        <HomeIcon color="#000000" size={20} />
-        <Text className="pl-3">SettingsScreen</Text>
-      </View>
-      <View className="flex-row">
-        <HomeIcon color="#000000" size={20} />
-        <Text className="pl-3">SettingsScreen</Text>
+      <View className="ml-2 mr-2">
+        <View className="flex-row justify-around">
+          <View className="rounded-md bg-gray-200 p-2 w-1/4">
+            <Text className="text-center">12</Text>
+            <Text className="text-center">Games</Text>
+          </View>
+          <View className="rounded-md bg-gray-200 p-2 w-1/4">
+            <Text className="text-center">34</Text>
+            <Text className="text-center">Friends</Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Wallet", {});
+            }}
+            className="rounded-md bg-gray-200 p-2 w-1/4"
+          >
+            <Text className="text-center">Add Founds</Text>
+            <Text className="text-center">Wallet</Text>
+          </TouchableOpacity>
+        </View>
+        <View className="flex-row justify-center mt-2 rounded-md bg-gray-300  pt-1 pb-1 ">
+          <UserPlusIcon color="#000000" size={20} />
+          <Text className="ml-3">Add friends</Text>
+        </View>
+        <View className="mt-3 ">
+          <Text className="text-center mb-1 rounded-md bg-gray-200">
+            Edit profile
+          </Text>
+          <Text className="text-center mb-1 rounded-md bg-gray-200">
+            Inventory
+          </Text>
+          <Text className="text-center rounded-md bg-gray-200">Log out</Text>
+        </View>
       </View>
     </View>
   );

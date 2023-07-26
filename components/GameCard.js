@@ -1,18 +1,25 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { StarIcon } from "react-native-heroicons/outline";
 
-const GameCard = ({ id, imgUrl, title, rating, ganre }) => {
+const GameCard = ({ imgUrl, title, ganre, price, rating }) => {
   return (
-    <TouchableOpacity className="bg-white mr-3 shadow-sm">
-      <Image source={{ uri: imgUrl }} className="h-36 w-64 rounded-sm" />
-      <View className="ml-3 mb-3">
-        <Text className="font-bold text-lg pt-2">{title}</Text>
-        <View className="flex-row items-center space-x-1">
-          <StarIcon color="green" opacity={0.5} size={22}></StarIcon>
-          <Text className="text-xs text-gray-500">
-            <Text className="text-gray-950">{rating}</Text> - {ganre}
-          </Text>
+    <TouchableOpacity className="flex-row bg-white border p-4 border-gray-200 rounded-md mb-1">
+      <View className="flex-row">
+        <Image
+          style={{
+            borderWidth: 1,
+            borderColor: "#F3F3F4",
+          }}
+          source={{ uri: imgUrl }}
+          className="h-20 w-20 bg-gray-300 p-4 mr-4"
+        />
+      </View>
+      <View className="flex-1">
+        <Text className="text-lg mb-1">{title}</Text>
+        <Text className=" text-sm text-gray-400">{ganre}</Text>
+        <View className="flex-row">
+          <Text className="flex-1 text-gray-500 mt-2">${price}</Text>
+          <Text className="text-gray-500 mt-2">{rating}%</Text>
         </View>
       </View>
     </TouchableOpacity>
