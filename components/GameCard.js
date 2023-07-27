@@ -1,9 +1,22 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
-const GameCard = ({ imgUrl, title, ganre, price, rating }) => {
+const GameCard = ({ id, imgUrl, title, ganre, price, rating, desc }) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity className="flex-row bg-white border p-4 border-gray-200 rounded-md mb-1">
+    <TouchableOpacity
+      className="flex-row bg-white border p-4 border-gray-200 rounded-md mb-1"
+      onPress={() => {
+        navigation.navigate("Game", {
+          id,
+          imgUrl,
+          title,
+          desc,
+        });
+      }}
+    >
       <View className="flex-row">
         <Image
           style={{

@@ -6,7 +6,7 @@ import ChatListItem from "../components/ChatListItem";
 const NotificationScreen = () => {
   return (
     <View>
-      <HeaderComponent screenName={"Notification"} />
+      <HeaderComponent screenName={"Notifications"} />
       <ChatListItem></ChatListItem>
       <ChatListItem></ChatListItem>
     </View>

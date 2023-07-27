@@ -15,30 +15,30 @@ const FeaturedRow = ({ title, description, featuredCategory }) => {
         className="pt-4"
       >
         <FeaturedGameCard
-          id={123}
+          id={1}
           imgUrl="https://links.papareact.com/gn7"
           title="aaa"
           rating={4.5}
           ganre="action"
         />
         <FeaturedGameCard
-          id={123}
+          id={2}
           imgUrl="https://links.papareact.com/gn7"
-          title="aaa"
+          title="bbb"
           rating={4.5}
           ganre="action"
         />
         <FeaturedGameCard
-          id={123}
+          id={3}
           imgUrl="https://links.papareact.com/gn7"
-          title="aaa"
+          title="ccc"
           rating={4.5}
           ganre="action"
         />
         <FeaturedGameCard
-          id={123}
+          id={4}
           imgUrl="https://links.papareact.com/gn7"
-          title="aaa"
+          title="ddd"
           rating={4.5}
           ganre="action"
         />

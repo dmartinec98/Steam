@@ -17,6 +17,9 @@ import {
 import SettingsScreen from "./screens/SettingsScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import ChatScreen from "./screens/ChatScreen";
+import NewsScreen from "./screens/NewsScreen";
+import GameInfo from "./components/GameInfo";
+import GameScreen from "./screens/GameScreen";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -30,6 +33,7 @@ export default function App() {
         <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
         <Stack.Screen name="Settings" component={SettingsScreen}></Stack.Screen>
         <Stack.Screen name="Wallet" component={WalletScreen}></Stack.Screen>
+        <Stack.Screen name="Game" component={GameScreen}></Stack.Screen>
       </Stack.Navigator>
     );
   };
@@ -48,7 +52,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Wishlist"
-          component={WishlistScreen}
+          component={NewsScreen}
           options={{
             tabBarIcon: () => <NewspaperIcon color="#000000" size={20} />,
           }}

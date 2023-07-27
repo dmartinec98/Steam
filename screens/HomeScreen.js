@@ -22,7 +22,8 @@ const HomeScreen = () => {
     {
       id: "123",
       imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
+      title: "Sushi simultaor1",
+      desc: "Super duper game",
       rating: "5",
       ganre: "action",
       price: "32",
@@ -30,7 +31,8 @@ const HomeScreen = () => {
     {
       id: "1",
       imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
+      title: "Sushi simultaor2",
+      desc: "Super game",
       rating: "5",
       ganre: "action",
       price: "32",
@@ -38,7 +40,8 @@ const HomeScreen = () => {
     {
       id: "12",
       imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
+      title: "Sushi simultaor3",
+      desc: "Gr8 Game M8",
       rating: "5",
       ganre: "action",
       price: "32",
@@ -47,6 +50,7 @@ const HomeScreen = () => {
       id: "13",
       imgUrl: "https://links.papareact.com/gn7",
       title: "Sushi simultaor",
+      desc: "AAAA",
       rating: "5",
       ganre: "action",
       price: "32",
@@ -55,6 +59,7 @@ const HomeScreen = () => {
       id: "15",
       imgUrl: "https://links.papareact.com/gn7",
       title: "Sushi simultaor",
+      desc: "Super duper game",
       rating: "5",
       ganre: "action",
       price: "32",
@@ -64,18 +69,15 @@ const HomeScreen = () => {
   return (
     <>
       <HeaderComponent />
-      <ScrollView
-        className="bg-gray-100"
-        contentContainerStyle={{
-          paddingBottom: 250,
-        }}
-      >
-        <FeaturedRow
-          id="123123"
-          title="Recommended"
-          description="Primjer necega kaj bu priakzano"
-        />
-      </ScrollView>
+      <View className="pb-3">
+        <ScrollView className="bg-gray-100">
+          <FeaturedRow
+            id="123123"
+            title="Recommended"
+            description="Primjer necega kaj bu priakzano"
+          />
+        </ScrollView>
+      </View>
       <View className="flex-row justify-around pb-2">
         <Text className="p-2 rounded-md bg-gray-300">Popular</Text>
         <Text className="p-2 rounded-md bg-gray-300">Top Rated</Text>
@@ -86,8 +88,10 @@ const HomeScreen = () => {
         data={games}
         renderItem={({ item }) => (
           <GameCard
+            id={item.id}
             imgUrl={item.imgUrl}
             title={item.title}
+            desc={item.desc}
             ganre={item.ganre}
             price={item.price}
             rating={item.rating}
