@@ -5,7 +5,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { ArrowLeftIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 

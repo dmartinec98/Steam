@@ -2,6 +2,7 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import HeaderComponent from "./HeaderComponent";
 import { useRoute } from "@react-navigation/native";
+import { HeartIcon } from "react-native-heroicons/outline";
 
 const GameInfo = () => {
   const {
@@ -28,7 +29,10 @@ const GameInfo = () => {
       <View className="flex-row justify-end pt-5">
         <Text className="flex-1 p-2 ml-10">Rating: 32%</Text>
         <Text className="p-2 ">$20</Text>
-        <Text className="p-2 bg-gray-300 rounded-md mr-10">Buy</Text>
+        <Text className="p-2 bg-gray-300 rounded-md mr-3">Buy</Text>
+        <Text className="p-2 bg-gray-300 rounded-md mr-10">
+          <HeartIcon color="#000000" size={20} />
+        </Text>
       </View>
       <View>
         <Text>Comments</Text>

@@ -20,6 +20,12 @@ import ChatScreen from "./screens/ChatScreen";
 import NewsScreen from "./screens/NewsScreen";
 import GameInfo from "./components/GameInfo";
 import GameScreen from "./screens/GameScreen";
+import OwnedGamesScreen from "./screens/OwnedGamesScreen";
+import FriendsListScreen from "./screens/FriendsListScreen";
+import AddFriendScreen from "./screens/AddFriendScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import EditProfileScreen from "./screens/EditProfileScreen";
+import OwnedItemsScreen from "./screens/OwnedItemsScreen";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -32,8 +38,30 @@ export default function App() {
       >
         <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
         <Stack.Screen name="Settings" component={SettingsScreen}></Stack.Screen>
+        <Stack.Screen name="Wishlist" component={WishlistScreen}></Stack.Screen>
         <Stack.Screen name="Wallet" component={WalletScreen}></Stack.Screen>
         <Stack.Screen name="Game" component={GameScreen}></Stack.Screen>
+        <Stack.Screen
+          name="OwnedGames"
+          component={OwnedGamesScreen}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="OwnedItems"
+          component={OwnedItemsScreen}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="AddFriend"
+          component={AddFriendScreen}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="Friends"
+          component={FriendsListScreen}
+        ></Stack.Screen>
+        <Stack.Screen name="Profile" component={ProfileScreen}></Stack.Screen>
+        <Stack.Screen
+          name="EditProfile"
+          component={EditProfileScreen}
+        ></Stack.Screen>
       </Stack.Navigator>
     );
   };
@@ -51,7 +79,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Wishlist"
+          name="News"
           component={NewsScreen}
           options={{
             tabBarIcon: () => <NewspaperIcon color="#000000" size={20} />,

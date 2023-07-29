@@ -8,11 +8,8 @@ import {
   FlatList,
 } from "react-native";
 import React, { useState } from "react";
-
 import HeaderComponent from "../components/HomeHeaderComponent";
-
 import FeaturedRow from "../components/FeaturedRow";
-
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import GameCard from "../components/GameCard";
 

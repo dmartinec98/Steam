@@ -1,27 +1,45 @@
 import { View, Text } from "react-native";
 import React from "react";
 import HeaderComponent from "../components/HeaderComponent";
+import { useState } from "react";
 
 const WalletScreen = () => {
+  const [balance, setBalance] = useState(0);
+
   return (
     <View>
       <HeaderComponent screenName={"Wallet"} />
-      <View className="bg-gray-300 mb-3">
+      <View className="bg-gray-300 mb-3 rounded-md">
         <Text className="text-center">Your ballance</Text>
-        <Text className="text-center">$100</Text>
+        <Text className="text-center">${balance}</Text>
       </View>
 
-      <View className="flex-row justify-around bg-gray-200 mb-1 p-1">
+      <View className="flex-row justify-around bg-gray-200 mb-1 p-1 rounded-md">
         <Text className="p-3">$10</Text>
-        <Text className="rounded-md bg-blue-400 p-3">Buy</Text>
+        <Text
+          className="rounded-md bg-gray-300 p-3"
+          onPress={() => setBalance(balance + 10)}
+        >
+          Buy
+        </Text>
       </View>
-      <View className="flex-row justify-around bg-gray-200 mb-1 p-1">
+      <View className="flex-row justify-around bg-gray-200 mb-1 p-1 rounded-md">
         <Text className="p-3">$20</Text>
-        <Text className="rounded-md bg-blue-400 p-3">Buy</Text>
+        <Text
+          className="rounded-md bg-gray-300 p-3"
+          onPress={() => setBalance(balance + 20)}
+        >
+          Buy
+        </Text>
       </View>
-      <View className="flex-row justify-around bg-gray-200 mb-1 p-1">
+      <View className="flex-row justify-around bg-gray-200 mb-1 p-1 rounded-md">
         <Text className="p-3">$30</Text>
-        <Text className="rounded-md bg-blue-400 p-3">Buy</Text>
+        <Text
+          className="rounded-md bg-gray-300 p-3"
+          onPress={() => setBalance(balance + 30)}
+        >
+          Buy
+        </Text>
       </View>
     </View>
   );

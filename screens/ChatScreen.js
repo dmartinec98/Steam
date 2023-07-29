@@ -13,6 +13,18 @@ const ChatScreen = () => {
       title: "Sushi simultaor",
       desc: "OVo je neka poruka balblalbalb",
     },
+    {
+      id: "232",
+      imgUrl: "https://links.papareact.com/gn7",
+      title: "Sushi simultaor",
+      desc: "OVo je neka poruka balblalbalb",
+    },
+    {
+      id: "1242343",
+      imgUrl: "https://links.papareact.com/gn7",
+      title: "Sushi simultaor",
+      desc: "OVo je neka poruka balblalbalb",
+    },
   ]);
 
   return (
