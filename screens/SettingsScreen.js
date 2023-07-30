@@ -41,7 +41,7 @@ const SettingsScreen = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Wallet", {});
+              navigation.navigate("Wallet", {isHome: false});
             }}
             className="rounded-md bg-gray-200 p-2 w-1/4"
           >

@@ -2,13 +2,19 @@ import { View, Text } from "react-native";
 import React from "react";
 import HeaderComponent from "../components/HeaderComponent";
 import { useState } from "react";
+import SettingsHeaderComponent from "../components/SettingsHeaderComponent";
+import { useRoute } from "@react-navigation/native";
 
 const WalletScreen = () => {
   const [balance, setBalance] = useState(0);
+  const {
+    params: { isHome },
+  } = useRoute();
 
   return (
     <View>
-      <HeaderComponent screenName={"Wallet"} />
+      {isHome && <HeaderComponent screenName={"Wallet"} />}
+      {!isHome && <SettingsHeaderComponent screenName={"Wallet"} />}
       <View className="bg-gray-300 mb-3 rounded-md">
         <Text className="text-center">Your ballance</Text>
         <Text className="text-center">${balance}</Text>

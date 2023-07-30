@@ -4,18 +4,11 @@ import {
   SafeAreaView,
   Image,
   TextInput,
-  ScrollView,
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import {
-  MagnifyingGlassIcon,
-  EllipsisVerticalIcon,
-} from "react-native-heroicons/outline";
+import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ChatScreen from "../screens/ChatScreen";
-import SettingsScreen from "../screens/SettingsScreen";
 
 const TopNav = () => {
   const navigation = useNavigation();
@@ -50,7 +43,7 @@ const TopNav = () => {
         </Text>
         <Text
           onPress={() => {
-            navigation.navigate("Wallet", {});
+            navigation.navigate("Wallet", { isHome: true });
           }}
           className="py-1 px-2"
         >

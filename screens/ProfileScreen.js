@@ -1,11 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
-import HeaderComponent from '../components/HeaderComponent'
+import HeaderComponent from "../components/HeaderComponent";
+import SettingsHeaderComponent from "../components/SettingsHeaderComponent";
 
 const ProfileScreen = () => {
   return (
     <View>
-      <HeaderComponent screenName={"Profile"} />
+      <SettingsHeaderComponent screenName={"Profile"} />
       <Text>ProfileScreen</Text>
     </View>
   );
