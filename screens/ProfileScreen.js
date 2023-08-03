@@ -8,6 +8,7 @@ const ProfileScreen = () => {
     <View>
       <SettingsHeaderComponent screenName={"Profile"} />
       <Text>ProfileScreen</Text>
+      {/* Ovo kad se probudim moram, //commit radi commitanja */}
     </View>
   );
 };
