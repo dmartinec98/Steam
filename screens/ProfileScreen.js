@@ -14,7 +14,7 @@ const ProfileScreen = () => {
             borderColor: "#F3F3F4",
           }}
           source={{ uri: "https://links.papareact.com/gn7" }}
-          className="h-20 w-20 bg-gray-300 p-4 mr-4 ml-10 border-black"
+          className="h-20 w-20 bg-gray-300 p-4 mr-4 ml-10 rounded-md "
         />
         <Text className="mt-5">Nickname</Text>
       </View>
@@ -25,7 +25,8 @@ const ProfileScreen = () => {
         <Text className="p-2">Steam Level</Text>
       </View>
       <Text className="mt-2 ml-3 mr-3">
-        Tu ide neki description dududududuudududuudududududududududududuudududududududududuududududududududududududu
+        Tu ide neki description
+        dududududuudududuudududududududududududuudududududududududuududududududududududududu
       </Text>
     </View>
   );
