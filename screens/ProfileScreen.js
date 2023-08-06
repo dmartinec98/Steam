@@ -2,6 +2,7 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import HeaderComponent from "../components/HeaderComponent";
 import SettingsHeaderComponent from "../components/SettingsHeaderComponent";
+import ProfileMenu from "../components/ProfileMenu";
 
 const ProfileScreen = () => {
   return (
@@ -28,6 +29,7 @@ const ProfileScreen = () => {
         Tu ide neki description
         dududududuudududuudududududududududududuudududududududududuududududududududududududu
       </Text>
+      <ProfileMenu></ProfileMenu>
     </View>
   );
 };

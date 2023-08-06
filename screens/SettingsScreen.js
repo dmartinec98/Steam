@@ -12,7 +12,6 @@ import {
 import HeaderComponent from "../components/HeaderComponent";
 import { useNavigation } from "@react-navigation/native";
 
-
 const SettingsScreen = () => {
   const navigation = useNavigation();
 
@@ -41,7 +40,7 @@ const SettingsScreen = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Wallet", {isHome: false});
+              navigation.navigate("Wallet", { isHome: false });
             }}
             className="rounded-md bg-gray-200 p-2 w-1/4"
           >
@@ -75,14 +74,7 @@ const SettingsScreen = () => {
           >
             Edit profile
           </Text>
-          <Text
-            onPress={() => {
-              navigation.navigate("OwnedItems", {});
-            }}
-            className="text-center mb-1 rounded-md bg-gray-200"
-          >
-            Inventory
-          </Text>
+
           <Text className="text-center rounded-md bg-gray-200">Log out</Text>
         </View>
       </View>

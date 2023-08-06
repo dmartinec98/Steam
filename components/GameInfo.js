@@ -34,10 +34,6 @@ const GameInfo = () => {
           <HeartIcon color="#000000" size={20} />
         </Text>
       </View>
-      <View>
-        <Text>Comments</Text>
-        {/*Tu treba napravit komponentu za komentare */}
-      </View>
     </View>
   );
 };

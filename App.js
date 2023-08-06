@@ -4,12 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
 import WishlistScreen from "./screens/WishlistScreen";
 import WalletScreen from "./screens/WalletScreen";
-import HeaderComponent from "./components/HomeHeaderComponent";
 import {
   BellIcon,
-  EllipsisVerticalIcon,
-  ShieldCheckIcon,
-  Bars3Icon,
   NewspaperIcon,
   HomeIcon,
   ChatBubbleBottomCenterIcon,
@@ -18,14 +14,13 @@ import SettingsScreen from "./screens/SettingsScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import ChatScreen from "./screens/ChatScreen";
 import NewsScreen from "./screens/NewsScreen";
-import GameInfo from "./components/GameInfo";
+
 import GameScreen from "./screens/GameScreen";
 import OwnedGamesScreen from "./screens/OwnedGamesScreen";
 import FriendsListScreen from "./screens/FriendsListScreen";
 import AddFriendScreen from "./screens/AddFriendScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import EditProfileScreen from "./screens/EditProfileScreen";
-import OwnedItemsScreen from "./screens/OwnedItemsScreen";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -44,10 +39,6 @@ export default function App() {
         <Stack.Screen
           name="OwnedGames"
           component={OwnedGamesScreen}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="OwnedItems"
-          component={OwnedItemsScreen}
         ></Stack.Screen>
         <Stack.Screen
           name="AddFriend"

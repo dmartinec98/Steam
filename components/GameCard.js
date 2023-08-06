@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import Comments from "./Comments";
 
 const GameCard = ({ id, imgUrl, title, ganre, price, rating, desc }) => {
   const navigation = useNavigation();
