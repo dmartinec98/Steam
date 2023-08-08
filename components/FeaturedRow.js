@@ -1,11 +1,38 @@
 import { View, Text, ScrollView } from "react-native";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
-import React from "react";
 import FeaturedGameCard from "./FeaturedGameCard";
+import React, { useState, useEffect } from "react";
 
-const FeaturedRow = ({ title, description, featuredCategory }) => {
+import supabase from "../config/supabaseService";
+
+const FeaturedRow = () => {
+  const [featuredGame, setFeaturedGame] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      const { data, error } = await supabase
+        .from("Games")
+        .select()
+        .eq("featured", true);
+
+      if (error) {
+        setFetchError("Could not fetch the games");
+        setFeaturedGame(null);
+      }
+
+      if (data) {
+        setFeaturedGame(data);
+        setFetchError(null);
+      }
+    };
+
+    fetchGames();
+  }, []);
+
   return (
     <View>
+      {fetchError && <Text>Failed to fetch featured games!</Text>}
       <ScrollView
         horizontal
         contentContainerStyle={{
@@ -14,34 +41,18 @@ const FeaturedRow = ({ title, description, featuredCategory }) => {
         showsHorizontalScrollIndicator={false}
         className="pt-4"
       >
-        <FeaturedGameCard
-          id={1}
-          imgUrl="https://links.papareact.com/gn7"
-          title="aaa"
-          rating={4.5}
-          ganre="action"
-        />
-        <FeaturedGameCard
-          id={2}
-          imgUrl="https://links.papareact.com/gn7"
-          title="bbb"
-          rating={4.5}
-          ganre="action"
-        />
-        <FeaturedGameCard
-          id={3}
-          imgUrl="https://links.papareact.com/gn7"
-          title="ccc"
-          rating={4.5}
-          ganre="action"
-        />
-        <FeaturedGameCard
-          id={4}
-          imgUrl="https://links.papareact.com/gn7"
-          title="ddd"
-          rating={4.5}
-          ganre="action"
-        />
+        {featuredGame &&
+          featuredGame.map((game) => (
+            <FeaturedGameCard
+              key={game.id}
+              id={game.id}
+              imgUrl={game.imgUrl}
+              title={game.title}
+              rating={game.rating}
+              price={game.price}
+              ganre="action"
+            />
+          ))}
       </ScrollView>
     </View>
   );

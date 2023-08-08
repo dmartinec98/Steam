@@ -6,7 +6,7 @@ import { HeartIcon } from "react-native-heroicons/outline";
 
 const GameInfo = () => {
   const {
-    params: { id, title, imgUrl, desc },
+    params: { id, title, imgUrl, desc,rating, price },
   } = useRoute();
 
   return (
@@ -27,8 +27,8 @@ const GameInfo = () => {
         <Text className="text-sm text-center">{desc}</Text>
       </View>
       <View className="flex-row justify-end pt-5">
-        <Text className="flex-1 p-2 ml-10">Rating: 32%</Text>
-        <Text className="p-2 ">$20</Text>
+        <Text className="flex-1 p-2 ml-10">Rating: {rating}</Text>
+        <Text className="p-2 ">${price}</Text>
         <Text className="p-2 bg-gray-300 rounded-md mr-3">Buy</Text>
         <Text className="p-2 bg-gray-300 rounded-md mr-10">
           <HeartIcon color="#000000" size={20} />

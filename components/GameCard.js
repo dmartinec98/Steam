@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { StarIcon } from "react-native-heroicons/outline";
 import Comments from "./Comments";
 
 const GameCard = ({ id, imgUrl, title, ganre, price, rating, desc }) => {
@@ -15,6 +16,8 @@ const GameCard = ({ id, imgUrl, title, ganre, price, rating, desc }) => {
           imgUrl,
           title,
           desc,
+          rating,
+          price,
         });
       }}
     >
@@ -33,7 +36,10 @@ const GameCard = ({ id, imgUrl, title, ganre, price, rating, desc }) => {
         <Text className=" text-sm text-gray-400">{ganre}</Text>
         <View className="flex-row">
           <Text className="flex-1 text-gray-500 mt-2">${price}</Text>
-          <Text className="text-gray-500 mt-2">{rating}%</Text>
+          <View className="flex-row mt-2">
+            <StarIcon color="gray" opacity={0.5} size={20}></StarIcon>
+            <Text className="ml-1">{rating}</Text>
+          </View>
         </View>
       </View>
     </TouchableOpacity>
