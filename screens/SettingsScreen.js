@@ -11,6 +11,7 @@ import {
 } from "react-native-heroicons/outline";
 import HeaderComponent from "../components/HeaderComponent";
 import { useNavigation } from "@react-navigation/native";
+import supabase from "../config/supabaseService";
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -75,7 +76,14 @@ const SettingsScreen = () => {
             Edit profile
           </Text>
 
-          <Text className="text-center rounded-md bg-gray-200">Log out</Text>
+          <Text
+            className="text-center rounded-md bg-gray-200"
+            onPress={async () => {
+              await supabase.auth.signOut();
+            }}
+          >
+            Log out
+          </Text>
         </View>
       </View>
     </View>

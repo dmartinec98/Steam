@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { ArrowLeftIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 
-const SettingsHeaderComponent = ({screenName}) => {
+const SettingsHeaderComponent = ({ screenName }) => {
   const navigation = useNavigation();
   return (
     <SafeAreaView className="pt-10">

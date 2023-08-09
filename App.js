@@ -22,9 +22,24 @@ import AddFriendScreen from "./screens/AddFriendScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import EditProfileScreen from "./screens/EditProfileScreen";
 
+import { useState, useEffect } from "react";
+import LoginScreen from "./screens/LoginScreen";
+import supabase from "./config/supabaseService";
+
 export default function App() {
+  const [session, setSession] = useState(null);
   const Tab = createBottomTabNavigator();
   const Stack = createNativeStackNavigator();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
 
   const HomeStack = () => {
     return (
@@ -58,41 +73,54 @@ export default function App() {
   };
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{ headerShown: false, tabBarShowLabel: false }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeStack}
-          options={{
-            tabBarIcon: () => <HomeIcon color="#000000" size={20} />,
-          }}
-        />
-        <Tab.Screen
-          name="News"
-          component={NewsScreen}
-          options={{
-            tabBarIcon: () => <NewspaperIcon color="#000000" size={20} />,
-          }}
-        />
-        <Tab.Screen
-          name="Notification"
-          component={NotificationScreen}
-          options={{
-            tabBarIcon: () => <BellIcon color="#000000" size={20} />,
-          }}
-        />
-        <Tab.Screen
-          name="Chat"
-          component={ChatScreen}
-          options={{
-            tabBarIcon: () => (
-              <ChatBubbleBottomCenterIcon color="#000000" size={20} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <>
+      {session && session.user ? (
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={{ headerShown: false, tabBarShowLabel: false }}
+          >
+            <Tab.Screen
+              name="Home"
+              component={HomeStack}
+              options={{
+                tabBarIcon: () => <HomeIcon color="#000000" size={20} />,
+              }}
+            />
+
+            <Tab.Screen
+              name="News"
+              component={NewsScreen}
+              options={{
+                tabBarIcon: () => <NewspaperIcon color="#000000" size={20} />,
+              }}
+            />
+            <Tab.Screen
+              name="Notification"
+              component={NotificationScreen}
+              options={{
+                tabBarIcon: () => <BellIcon color="#000000" size={20} />,
+              }}
+            />
+            <Tab.Screen
+              name="Chat"
+              component={ChatScreen}
+              options={{
+                tabBarIcon: () => (
+                  <ChatBubbleBottomCenterIcon color="#000000" size={20} />
+                ),
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
+      ) : (
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{ headerShown: false, tabBarShowLabel: false }}
+          >
+            <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      )}
+    </>
   );
 }

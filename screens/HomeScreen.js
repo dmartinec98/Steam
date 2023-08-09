@@ -8,54 +8,6 @@ import GameCard from "../components/GameCard";
 import supabase from "../config/supabaseService";
 
 const HomeScreen = () => {
-  const [dummyData, setDummyData] = useState([
-    {
-      id: "123",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor1",
-      desc: "Super duper game",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-    {
-      id: "1",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor2",
-      desc: "Super game",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-    {
-      id: "12",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor3",
-      desc: "Gr8 Game M8",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-    {
-      id: "13",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
-      desc: "AAAA",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-    {
-      id: "15",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
-      desc: "Super duper game",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-  ]);
-
   const [fetchError, setFetchError] = useState(null);
   const [games, setGames] = useState(null);
 
