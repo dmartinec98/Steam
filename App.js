@@ -46,9 +46,17 @@ export default function App() {
       <Stack.Navigator
         screenOptions={{ headerShown: false, tabBarShowLabel: false }}
       >
-        <Stack.Screen name="HomeScreen" component={HomeScreen}></Stack.Screen>
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          initialParams={{ userId: session.user.id }}
+        ></Stack.Screen>
         <Stack.Screen name="Settings" component={SettingsScreen}></Stack.Screen>
-        <Stack.Screen name="Wishlist" component={WishlistScreen}></Stack.Screen>
+        <Stack.Screen
+          name="Wishlist"
+          component={WishlistScreen}
+          initialParams={{ userId: session.user.id }}
+        ></Stack.Screen>
         <Stack.Screen name="Wallet" component={WalletScreen}></Stack.Screen>
         <Stack.Screen name="Game" component={GameScreen}></Stack.Screen>
         <Stack.Screen
@@ -86,7 +94,6 @@ export default function App() {
                 tabBarIcon: () => <HomeIcon color="#000000" size={20} />,
               }}
             />
-
             <Tab.Screen
               name="News"
               component={NewsScreen}

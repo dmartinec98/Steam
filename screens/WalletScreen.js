@@ -1,15 +1,54 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import HeaderComponent from "../components/HeaderComponent";
 import { useState } from "react";
 import SettingsHeaderComponent from "../components/SettingsHeaderComponent";
 import { useRoute } from "@react-navigation/native";
+import supabase from "../config/supabaseService";
 
-const WalletScreen = () => {
-  const [balance, setBalance] = useState(0);
+const WalletScreen = ({ route }) => {
   const {
-    params: { isHome },
+    params: { userId, isHome, money },
   } = useRoute();
+  const [balance, setBalance] = useState(money);
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("balance")
+        .eq("id", userId)
+        .single();
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        console.log(data);
+        setBalance(data.balance);
+      }
+    };
+
+    fetchBalance();
+  }, []);
+
+  useEffect(() => {
+    handleUpdate();
+  }, [balance]);
+  
+  const handleUpdate = async (e) => {
+    const { data, error } = await supabase
+      .from("profiles")
+      .update({ balance: balance })
+      .eq("id", userId);
+
+    if (error) {
+      console.log(error);
+    }
+    if (data) {
+      console.log(data);
+    }
+  };
 
   return (
     <View>
@@ -24,7 +63,9 @@ const WalletScreen = () => {
         <Text className="p-3">$10</Text>
         <Text
           className="rounded-md bg-gray-300 p-3"
-          onPress={() => setBalance(balance + 10)}
+          onPress={() => {
+            setBalance(balance + 10);
+          }}
         >
           Buy
         </Text>
@@ -33,7 +74,9 @@ const WalletScreen = () => {
         <Text className="p-3">$20</Text>
         <Text
           className="rounded-md bg-gray-300 p-3"
-          onPress={() => setBalance(balance + 20)}
+          onPress={() => {
+            setBalance(balance + 20);
+          }}
         >
           Buy
         </Text>
@@ -42,7 +85,9 @@ const WalletScreen = () => {
         <Text className="p-3">$30</Text>
         <Text
           className="rounded-md bg-gray-300 p-3"
-          onPress={() => setBalance(balance + 30)}
+          onPress={() => {
+            setBalance(balance + 30);
+          }}
         >
           Buy
         </Text>

@@ -4,7 +4,16 @@ import { useNavigation } from "@react-navigation/native";
 import { StarIcon } from "react-native-heroicons/outline";
 import Comments from "./Comments";
 
-const GameCard = ({ id, imgUrl, title, ganre, price, rating, desc }) => {
+const GameCard = ({
+  id,
+  imgUrl,
+  title,
+  ganre,
+  price,
+  rating,
+  desc,
+  userId,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -18,6 +27,7 @@ const GameCard = ({ id, imgUrl, title, ganre, price, rating, desc }) => {
           desc,
           rating,
           price,
+          userId,
         });
       }}
     >

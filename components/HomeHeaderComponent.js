@@ -10,7 +10,7 @@ import React from "react";
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 
-const TopNav = () => {
+const TopNav = ({userId, imgUrl, balance }) => {
   const navigation = useNavigation();
 
   return (
@@ -27,7 +27,7 @@ const TopNav = () => {
           }}
         >
           <Image
-            source={{ uri: "https://links.papareact.com/wru" }}
+            source={{ uri: imgUrl }}
             className="h-10 w-10 bg-gray-300 p-4 rounded-md"
           />
         </TouchableOpacity>
@@ -43,7 +43,7 @@ const TopNav = () => {
         </Text>
         <Text
           onPress={() => {
-            navigation.navigate("Wallet", { isHome: true });
+            navigation.navigate("Wallet", {userId:userId, isHome: true, money: balance });
           }}
           className="py-1 px-2"
         >

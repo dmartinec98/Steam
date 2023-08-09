@@ -1,71 +1,56 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import HeaderComponent from "../components/HeaderComponent";
 import GameCard from "../components/GameCard";
 import { useState } from "react";
+import supabase from "../config/supabaseService";
 
-const WishlistScreen = () => {
-  const [games, setGames] = useState([
-    {
-      id: "123",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-    {
-      id: "1",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-    {
-      id: "12",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-    {
-      id: "13",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-    {
-      id: "15",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
-      rating: "5",
-      ganre: "action",
-      price: "32",
-    },
-  ]);
+const WishlistScreen = ({ route }) => {
+  const { userId } = route.params;
+  const [games, setGames] = useState([]);
+  const [gameFetchError, setGameFetchError] = useState(null);
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      const { data, error } = await supabase
+        .from("wishlist")
+        .select()
+        .eq("user_id", userId);
+
+      if (error) {
+        setGameFetchError("Could not fetch the games");
+        setGames(null);
+      }
+
+      if (data) {
+        setGames(data);
+        setGameFetchError(null);
+      }
+    };
+
+    fetchGames();
+  }, []);
 
   return (
     <>
       <HeaderComponent screenName={"Wishlist"} />
-
-      <ScrollView>
-        {games.map((item) => (
-          <View key={item.id}>
-            <GameCard
-              id={item.id}
-              imgUrl={item.imgUrl}
-              title={item.title}
-              rating={item.rating}
-              ganre={item.ganre}
-              price={item.price}
-            />
-          </View>
-        ))}
-      </ScrollView>
+      {games && (
+        <ScrollView>
+          {games.map((item) => (
+            <View key={item.id}>
+              <GameCard
+                id={item.game_id}
+                imgUrl={item.imgurl}
+                title={item.name}
+                rating={item.rating}
+                ganre={item.ganre}
+                price={item.price}
+              />
+            </View>
+          ))}
+        </ScrollView>
+      )}
+      {!games && <Text>Empty wishlist!</Text>}
     </>
   );
 };

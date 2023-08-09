@@ -1,13 +1,34 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
+import { View, Text, Image, Touchable, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
 import HeaderComponent from "./HeaderComponent";
 import { useRoute } from "@react-navigation/native";
 import { HeartIcon } from "react-native-heroicons/outline";
+import supabase from "../config/supabaseService";
 
 const GameInfo = () => {
   const {
-    params: { id, title, imgUrl, desc,rating, price },
+    params: { id, title, imgUrl, desc, rating, price, userId },
   } = useRoute();
+
+  const handleInsert = async (e) => {
+    const { data, error } = await supabase
+      .from("wishlist")
+      .insert({
+        name: title,
+        price: price,
+        imgurl: imgUrl,
+        game_id: id,
+        user_id: userId,
+      })
+      .select();
+
+    if (error) {
+      console.log(error);
+    }
+    if (data) {
+      console.log(data);
+    }
+  };
 
   return (
     <View>
@@ -30,9 +51,14 @@ const GameInfo = () => {
         <Text className="flex-1 p-2 ml-10">Rating: {rating}</Text>
         <Text className="p-2 ">${price}</Text>
         <Text className="p-2 bg-gray-300 rounded-md mr-3">Buy</Text>
-        <Text className="p-2 bg-gray-300 rounded-md mr-10">
+        <TouchableOpacity
+          className="p-2 bg-gray-300 rounded-md mr-10"
+          onPress={() => {
+            handleInsert();
+          }}
+        >
           <HeartIcon color="#000000" size={20} />
-        </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
