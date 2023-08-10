@@ -10,7 +10,7 @@ const WalletScreen = ({ route }) => {
   const {
     params: { userId, isHome, money },
   } = useRoute();
-  const [balance, setBalance] = useState(money);
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -24,7 +24,6 @@ const WalletScreen = ({ route }) => {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         setBalance(data.balance);
       }
     };
@@ -32,22 +31,18 @@ const WalletScreen = ({ route }) => {
     fetchBalance();
   }, []);
 
-  useEffect(() => {
-    handleUpdate();
-  }, [balance]);
-  
   const handleUpdate = async (e) => {
-    const { data, error } = await supabase
+    let helper = balance;
+    helper = helper + e;
+    const { error } = await supabase
       .from("profiles")
-      .update({ balance: balance })
+      .update({ balance: helper })
       .eq("id", userId);
 
     if (error) {
       console.log(error);
     }
-    if (data) {
-      console.log(data);
-    }
+    setBalance(helper);
   };
 
   return (
@@ -64,7 +59,7 @@ const WalletScreen = ({ route }) => {
         <Text
           className="rounded-md bg-gray-300 p-3"
           onPress={() => {
-            setBalance(balance + 10);
+            handleUpdate(10);
           }}
         >
           Buy
@@ -75,7 +70,7 @@ const WalletScreen = ({ route }) => {
         <Text
           className="rounded-md bg-gray-300 p-3"
           onPress={() => {
-            setBalance(balance + 20);
+            handleUpdate(20);
           }}
         >
           Buy
@@ -86,7 +81,7 @@ const WalletScreen = ({ route }) => {
         <Text
           className="rounded-md bg-gray-300 p-3"
           onPress={() => {
-            setBalance(balance + 30);
+            handleUpdate(30);
           }}
         >
           Buy

@@ -1,4 +1,11 @@
-import { View, Text, Image, Touchable, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Touchable,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import HeaderComponent from "./HeaderComponent";
 import { useRoute } from "@react-navigation/native";
@@ -10,23 +17,58 @@ const GameInfo = () => {
     params: { id, title, imgUrl, desc, rating, price, userId },
   } = useRoute();
 
-  const handleInsert = async (e) => {
-    const { data, error } = await supabase
-      .from("wishlist")
-      .insert({
-        name: title,
-        price: price,
-        imgurl: imgUrl,
-        game_id: id,
-        user_id: userId,
-      })
-      .select();
+  const [games, setGames] = useState([]);
+  const [gameFetchError, setGameFetchError] = useState(null);
+  const [gameExists, setGameExists] = useState(false);
 
-    if (error) {
-      console.log(error);
-    }
-    if (data) {
-      console.log(data);
+  useEffect(() => {
+    const fetchGames = async () => {
+      const { data, error } = await supabase
+        .from("wishlist")
+        .select("game_id")
+        .eq("user_id", userId);
+
+      if (error) {
+        setGameFetchError("Could not fetch the games");
+        setGames(null);
+      }
+
+      if (data) {
+        setGames(data);
+        setGameFetchError(null);
+        for (item of data) {
+          if (item.game_id == id) {
+            setGameExists(true);
+          }
+        }
+      }
+    };
+
+    fetchGames();
+  }, []);
+
+  const handleInsert = async (e) => {
+    if (!gameExists) {
+      const { data, error } = await supabase
+        .from("wishlist")
+        .insert({
+          name: title,
+          price: price,
+          imgurl: imgUrl,
+          game_id: id,
+          user_id: userId,
+        })
+        .select();
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        console.log(data);
+        setGameExists(true);
+      }
+    } else {
+      Alert.alert("Game is already on your wishlist!");
     }
   };
 
@@ -51,14 +93,17 @@ const GameInfo = () => {
         <Text className="flex-1 p-2 ml-10">Rating: {rating}</Text>
         <Text className="p-2 ">${price}</Text>
         <Text className="p-2 bg-gray-300 rounded-md mr-3">Buy</Text>
-        <TouchableOpacity
-          className="p-2 bg-gray-300 rounded-md mr-10"
-          onPress={() => {
-            handleInsert();
-          }}
-        >
-          <HeartIcon color="#000000" size={20} />
-        </TouchableOpacity>
+        {!gameExists && (
+          <TouchableOpacity
+            className="p-2 bg-gray-300 rounded-md mr-10"
+            onPress={() => {
+              handleInsert();
+            }}
+            disabled={gameExists}
+          >
+            <HeartIcon color="#000000" size={20} />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

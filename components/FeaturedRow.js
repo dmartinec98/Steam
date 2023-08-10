@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 
 import supabase from "../config/supabaseService";
 
-const FeaturedRow = () => {
+const FeaturedRow = ({ userId }) => {
   const [featuredGame, setFeaturedGame] = useState(null);
   const [fetchError, setFetchError] = useState(null);
 
@@ -24,6 +24,7 @@ const FeaturedRow = () => {
       if (data) {
         setFeaturedGame(data);
         setFetchError(null);
+        console.log(data);
       }
     };
 
@@ -50,7 +51,9 @@ const FeaturedRow = () => {
               title={game.title}
               rating={game.rating}
               price={game.price}
-              ganre="action"
+              ganre={game.ganre}
+              desc={game.desc}
+              userId={userId}
             />
           ))}
       </ScrollView>

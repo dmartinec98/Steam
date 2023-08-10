@@ -3,7 +3,16 @@ import React from "react";
 import { StarIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 
-const FeaturedGameCard = ({ id, imgUrl, title, rating, ganre, price }) => {
+const FeaturedGameCard = ({
+  id,
+  imgUrl,
+  title,
+  rating,
+  ganre,
+  price,
+  desc,
+  userId,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -16,6 +25,9 @@ const FeaturedGameCard = ({ id, imgUrl, title, rating, ganre, price }) => {
           title: title,
           price: price,
           rating: rating,
+          ganre: ganre,
+          desc: desc,
+          userId: userId,
         });
       }}
     >
@@ -24,9 +36,7 @@ const FeaturedGameCard = ({ id, imgUrl, title, rating, ganre, price }) => {
         <Text className="font-bold text-lg pt-2">{title}</Text>
         <View className="flex-row items-center space-x-1">
           <StarIcon color="gray" opacity={0.5} size={22}></StarIcon>
-          <Text className="text-xs text-gray-500">
-            <Text className="text-gray-950">{rating}</Text> - {ganre}
-          </Text>
+          <Text className="text-xs text-gray-500">{rating}</Text>
         </View>
       </View>
     </TouchableOpacity>

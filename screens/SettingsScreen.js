@@ -13,7 +13,8 @@ import HeaderComponent from "../components/HeaderComponent";
 import { useNavigation } from "@react-navigation/native";
 import supabase from "../config/supabaseService";
 
-const SettingsScreen = () => {
+const SettingsScreen = ({ route }) => {
+  const { userId } = route.params;
   const navigation = useNavigation();
 
   return (
@@ -41,7 +42,7 @@ const SettingsScreen = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Wallet", { isHome: false });
+              navigation.navigate("Wallet", { userId: userId, isHome: false });
             }}
             className="rounded-md bg-gray-200 p-2 w-1/4"
           >

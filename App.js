@@ -51,7 +51,11 @@ export default function App() {
           component={HomeScreen}
           initialParams={{ userId: session.user.id }}
         ></Stack.Screen>
-        <Stack.Screen name="Settings" component={SettingsScreen}></Stack.Screen>
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          initialParams={{ userId: session.user.id }}
+        ></Stack.Screen>
         <Stack.Screen
           name="Wishlist"
           component={WishlistScreen}

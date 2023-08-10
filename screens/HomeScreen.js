@@ -54,10 +54,14 @@ const HomeScreen = ({ route }) => {
 
   return (
     <>
-      <HeaderComponent userId={userId} imgUrl={profile.imgurl} balance={profile.balance} />
+      <HeaderComponent
+        userId={userId}
+        imgUrl={profile.imgurl}
+        balance={profile.balance}
+      />
       <View className="pb-3">
         <ScrollView className="bg-gray-100">
-          <FeaturedRow />
+          <FeaturedRow userId={userId} />
         </ScrollView>
       </View>
       <View className="flex-row justify-around pb-2">
