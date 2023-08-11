@@ -66,6 +66,7 @@ export default function App() {
         <Stack.Screen
           name="OwnedGames"
           component={OwnedGamesScreen}
+          initialParams={{ userId: session.user.id }}
         ></Stack.Screen>
         <Stack.Screen
           name="AddFriend"

@@ -20,6 +20,9 @@ const GameInfo = () => {
   const [games, setGames] = useState([]);
   const [gameFetchError, setGameFetchError] = useState(null);
   const [gameExists, setGameExists] = useState(false);
+  const [yourGames, setYourGames] = useState([]);
+  const [gameOwned, setGameOwned] = useState(false);
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -44,8 +47,73 @@ const GameInfo = () => {
       }
     };
 
+    const fetchOwnedGames = async () => {
+      const { data, error } = await supabase
+        .from("ownedGames")
+        .select("game_id")
+        .eq("user_id", userId);
+
+      if (error) {
+        setGameFetchError("Could not fetch the games");
+        setYourGames(null);
+      }
+
+      if (data) {
+        setYourGames(data);
+        setGameFetchError(null);
+        for (item of data) {
+          if (item.game_id == id) {
+            setGameOwned(true);
+          }
+        }
+      }
+    };
+
+    const fetchBalance = async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("balance")
+        .eq("id", userId)
+        .single();
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        setBalance(data.balance);
+      }
+    };
+
+    fetchBalance();
     fetchGames();
+    fetchOwnedGames();
   }, []);
+
+  const handleOwned = async (e) => {
+    if (balance - e < 0) {
+      Alert.alert("Insufficient balance in wallet");
+    } else {
+      if (!gameOwned) {
+        const { data, error } = await supabase
+          .from("ownedGames")
+          .insert({
+            game_id: id,
+            user_id: userId,
+          })
+          .select();
+
+        if (error) {
+          console.log(error);
+        }
+        if (data) {
+          setGameOwned(true);
+        }
+        handleUpdate(e);
+      } else {
+        Alert.alert("You already purchased the game!");
+      }
+    }
+  };
 
   const handleInsert = async (e) => {
     if (!gameExists) {
@@ -72,6 +140,20 @@ const GameInfo = () => {
     }
   };
 
+  const handleUpdate = async (e) => {
+    let helper = balance;
+    helper = helper - e;
+    const { error } = await supabase
+      .from("profiles")
+      .update({ balance: helper })
+      .eq("id", userId);
+
+    if (error) {
+      console.log(error);
+    }
+    setBalance(helper);
+  };
+
   return (
     <View>
       <HeaderComponent></HeaderComponent>
@@ -91,8 +173,16 @@ const GameInfo = () => {
       </View>
       <View className="flex-row justify-end pt-5">
         <Text className="flex-1 p-2 ml-10">Rating: {rating}</Text>
-        <Text className="p-2 ">${price}</Text>
-        <Text className="p-2 bg-gray-300 rounded-md mr-3">Buy</Text>
+        {!gameOwned && <Text className="p-2 ">${price}</Text>}
+        {!gameOwned && (
+          <TouchableOpacity
+            onPress={() => {
+              handleOwned(price);
+            }}
+          >
+            <Text className="p-2 bg-gray-300 rounded-md mr-3">Buy</Text>
+          </TouchableOpacity>
+        )}
         {!gameExists && (
           <TouchableOpacity
             className="p-2 bg-gray-300 rounded-md mr-10"

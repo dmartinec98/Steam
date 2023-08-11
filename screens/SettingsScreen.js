@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BellIcon,
   EllipsisVerticalIcon,
@@ -16,6 +16,22 @@ import supabase from "../config/supabaseService";
 const SettingsScreen = ({ route }) => {
   const { userId } = route.params;
   const navigation = useNavigation();
+  const [gamesOwned, setGamesOwned] = useState(0);
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      const { data, count } = await supabase
+        .from("ownedGames")
+        .select("*", { count: "exact", head: true })
+        .eq("user_id", userId);
+
+      if (count) {
+        setGamesOwned(count);
+      }
+    };
+
+    fetchGames();
+  }, []);
 
   return (
     <View>
@@ -24,11 +40,11 @@ const SettingsScreen = ({ route }) => {
         <View className="flex-row justify-around">
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("OwnedGames", {});
+              navigation.navigate("OwnedGames", { userId: userId });
             }}
             className="rounded-md bg-gray-200 p-2 w-1/4"
           >
-            <Text className="text-center">12</Text>
+            <Text className="text-center">{gamesOwned}</Text>
             <Text className="text-center">Games</Text>
           </TouchableOpacity>
           <TouchableOpacity

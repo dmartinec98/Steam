@@ -1,56 +1,50 @@
 import { View, Text, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderComponent from "../components/HeaderComponent";
 import NewsListItem from "../components/NewsListItem";
 
+import supabase from "../config/supabaseService";
+
 const NewsScreen = () => {
-  const [news, setNews] = useState([
-    {
-      id: "123",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor1",
-      desc: "Super duper game",
-    },
-    {
-      id: "1",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor2",
-      desc: "Super game",
-    },
-    {
-      id: "12",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor3",
-      desc: "Gr8 Game M8",
-    },
-    {
-      id: "13",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
-      desc: "AAAA",
-    },
-    {
-      id: "15",
-      imgUrl: "https://links.papareact.com/gn7",
-      title: "Sushi simultaor",
-      desc: "Super duper game",
-    },
-  ]);
+  const [news, setNews] = useState([]);
+  const [fetchError, setFetchError] = useState(null);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      const { data, error } = await supabase.from("news").select();
+
+      if (error) {
+        setFetchError("Could not fetch the games");
+        setNews(null);
+      }
+
+      if (data) {
+        setNews(data);
+        setFetchError(null);
+      }
+    };
+
+    fetchNews();
+  }, []);
 
   return (
     <View>
       <HeaderComponent screenName={"News"} />
-      <FlatList
-        data={news}
-        renderItem={({ item }) => (
-          <NewsListItem
-            id={item.id}
-            imgUrl={item.imgUrl}
-            title={item.title}
-            desc={item.desc}
-          ></NewsListItem>
-        )}
-      />
+      {news && (
+        <FlatList
+          data={news}
+          renderItem={({ item }) => (
+            <NewsListItem
+              id={item.id}
+              imgUrl={item.imgurl}
+              title={item.title}
+              desc={item.desc}
+              content={item.content}
+            ></NewsListItem>
+          )}
+        />
+      )}
+      {fetchError && <Text>{fetchError}</Text>}
     </View>
   );
 };
