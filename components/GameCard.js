@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StarIcon } from "react-native-heroicons/outline";
-import Comments from "./Comments";
 
 const GameCard = ({
   id,

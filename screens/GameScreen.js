@@ -1,13 +1,15 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect, useRoute } from "react";
 import GameInfo from "../components/GameInfo";
 import Comments from "../components/Comments";
 
-const GameScreen = ({ userId, id, title, desc }) => {
+const GameScreen = ({ route }) => {
+  const { id, userId, title, desc } = route.params;
+
   return (
     <View>
       <GameInfo userId={userId} id={id} title={title} desc={desc}></GameInfo>
-      <Comments></Comments>
+      <Comments gameId={id} userId={userId}></Comments>
     </View>
   );
 };
