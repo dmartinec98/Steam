@@ -77,19 +77,17 @@ const Comments = ({ gameId, userId }) => {
           <PaperAirplaneIcon color="#000000" size={20} />
         </TouchableOpacity>
       </View>
-      {komentari && (
-        <ScrollView>
-          {komentari.map((item) => (
-            <View key={item.id}>
-              <CommentItem
-                username={item.profiles.username}
-                imgUrl={item.profiles.imgurl}
-                content={item.content}
-              ></CommentItem>
-            </View>
-          ))}
-        </ScrollView>
-      )}
+      <ScrollView>
+        {komentari.map((item) => (
+          <View key={item.id}>
+            <CommentItem
+              username={item.profiles.username}
+              imgUrl={item.profiles.imgurl}
+              content={item.content}
+            ></CommentItem>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 };
