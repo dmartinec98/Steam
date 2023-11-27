@@ -52,6 +52,74 @@ const HomeScreen = ({ route }) => {
     fetchGames();
   }, []);
 
+  const fetchPopularGames = async () => {
+    const { data, error } = await supabase
+      .from("Games")
+      .select()
+      .order("downloads", { ascending: false });
+
+    if (error) {
+      setGameFetchError("Could not fetch the games");
+      setGames(null);
+    }
+
+    if (data) {
+      setGames(data);
+      setGameFetchError(null);
+    }
+  };
+
+  const fetchFreeGames = async () => {
+    const { data, error } = await supabase
+      .from("Games")
+      .select()
+      .eq("price", 0);
+
+    if (error) {
+      setGameFetchError("Could not fetch the games");
+      setGames(null);
+    }
+
+    if (data) {
+      setGames(data);
+      setGameFetchError(null);
+    }
+  };
+
+  const fetchTopRatedGames = async () => {
+    const { data, error } = await supabase
+      .from("Games")
+      .select()
+      .gte("rating", 4.5);
+
+    if (error) {
+      setGameFetchError("Could not fetch the games");
+      setGames(null);
+    }
+
+    if (data) {
+      setGames(data);
+      setGameFetchError(null);
+    }
+  };
+
+  const fetchUpcomingGames = async () => {
+    const { data, error } = await supabase
+      .from("Games")
+      .select()
+      .is("upcoming", "TRUE");
+
+    if (error) {
+      setGameFetchError("Could not fetch the games");
+      setGames(null);
+    }
+
+    if (data) {
+      setGames(data);
+      setGameFetchError(null);
+    }
+  };
+
   return (
     <>
       <HeaderComponent
@@ -65,10 +133,27 @@ const HomeScreen = ({ route }) => {
         </ScrollView>
       </View>
       <View className="flex-row justify-around pb-2">
-        <Text className="p-2 rounded-md bg-gray-300">Popular</Text>
-        <Text className="p-2 rounded-md bg-gray-300">Top Rated</Text>
-        <Text className="p-2 rounded-md bg-gray-300">Free</Text>
-        <Text className="p-2 rounded-md bg-gray-300">Upcoming</Text>
+        <Text
+          className="p-2 rounded-md bg-gray-300"
+          onPress={fetchPopularGames}
+        >
+          Popular
+        </Text>
+        <Text
+          className="p-2 rounded-md bg-gray-300"
+          onPress={fetchTopRatedGames}
+        >
+          Top Rated
+        </Text>
+        <Text className="p-2 rounded-md bg-gray-300" onPress={fetchFreeGames}>
+          Free
+        </Text>
+        <Text
+          className="p-2 rounded-md bg-gray-300"
+          onPress={fetchUpcomingGames}
+        >
+          Upcoming
+        </Text>
       </View>
       {profileFetchError && <Text>Error fetching user data!</Text>}
       {gameFetchError && <Text>Error fetching games!</Text>}

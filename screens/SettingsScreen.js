@@ -78,7 +78,10 @@ const SettingsScreen = ({ route }) => {
         <View className="mt-3 ">
           <Text
             onPress={() => {
-              navigation.navigate("Profile", {});
+              navigation.navigate("Profile", {
+                userId: userId,
+                profileId: userId,
+              });
             }}
             className="text-center mb-1 rounded-md bg-gray-200"
           >

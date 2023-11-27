@@ -18,9 +18,9 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const signInWithEmail = async () => {
+  const signUpWithEmail = async () => {
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signUp({
       email: email,
       password: password,
     });
@@ -28,7 +28,6 @@ const LoginScreen = () => {
     if (error) Alert.alert(error.message);
     setLoading(false);
   };
-
   return (
     <SafeAreaView>
       <View className="space-x-2 mr-5 ml-5 mt-10 bg-gray-200 p-3 items-center h-10 rounded-md">
@@ -50,16 +49,16 @@ const LoginScreen = () => {
       </View>
       <TouchableOpacity
         className="space-x-2 ml-5 mr-5 mt-2 bg-gray-400 p-3 items-center h-10 rounded-md"
-        onPress={() => signInWithEmail()}
+        onPress={() => signUpWithEmail()}
         disabled={loading}
       >
-        <Text>Login</Text>
+        <Text>Register</Text>
       </TouchableOpacity>
       <Text
         className="text-center mt-3 underline"
-        onPress={() => navigation.navigate("Register")}
+        onPress={() => navigation.navigate("Login")}
       >
-        Sign up
+        Login
       </Text>
     </SafeAreaView>
   );

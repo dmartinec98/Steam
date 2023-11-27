@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import HeaderComponent from "../components/HeaderComponent";
 import NewsListItem from "../components/NewsListItem";
@@ -14,7 +14,7 @@ const NewsScreen = () => {
       const { data, error } = await supabase.from("news").select();
 
       if (error) {
-        setFetchError("Could not fetch the games");
+        setFetchError("Could not fetch the news");
         setNews(null);
       }
 
@@ -30,8 +30,12 @@ const NewsScreen = () => {
   return (
     <View>
       <HeaderComponent screenName={"News"} />
+
       {news && (
         <FlatList
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          className="mb-32"
           data={news}
           renderItem={({ item }) => (
             <NewsListItem
@@ -44,6 +48,7 @@ const NewsScreen = () => {
           )}
         />
       )}
+
       {fetchError && <Text>{fetchError}</Text>}
     </View>
   );

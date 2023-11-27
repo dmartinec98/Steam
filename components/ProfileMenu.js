@@ -15,7 +15,6 @@ const ProfileMenu = () => {
           <Text>Games</Text>
         </View>
       </View>
-      <Comments></Comments>
     </View>
   );
 };

@@ -24,7 +24,6 @@ const FeaturedRow = ({ userId }) => {
       if (data) {
         setFeaturedGame(data);
         setFetchError(null);
-        console.log(data);
       }
     };
 

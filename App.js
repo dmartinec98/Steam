@@ -24,7 +24,9 @@ import EditProfileScreen from "./screens/EditProfileScreen";
 
 import { useState, useEffect } from "react";
 import LoginScreen from "./screens/LoginScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 import supabase from "./config/supabaseService";
+import Komponenta from "./components/Komponenta";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -130,6 +132,10 @@ export default function App() {
             screenOptions={{ headerShown: false, tabBarShowLabel: false }}
           >
             <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+            <Stack.Screen
+              name="Register"
+              component={SignUpScreen}
+            ></Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
       )}
