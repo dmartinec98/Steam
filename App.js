@@ -111,6 +111,7 @@ export default function App() {
             <Tab.Screen
               name="Notification"
               component={NotificationScreen}
+              initialParams={{ userId: session.user.id }}
               options={{
                 tabBarIcon: () => <BellIcon color="#000000" size={20} />,
               }}

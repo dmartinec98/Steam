@@ -3,12 +3,13 @@ import React from "react";
 import SettingsHeaderComponent from "../components/SettingsHeaderComponent";
 import FriendsListItem from "../components/FriendsListItem";
 
-const FriendsListScreen = () => {
-  const id = 1;
+const FriendsListScreen = ({route}) => {
+  const { userId } = route.params;
+  
   return (
     <View>
       <SettingsHeaderComponent screenName={"Friends"} />
-      <FriendsListItem id={id} />
+      <FriendsListItem id={userId} />
     </View>
   );
 };

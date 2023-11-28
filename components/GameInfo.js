@@ -109,6 +109,7 @@ const GameInfo = () => {
           setGameOwned(true);
         }
         handleUpdate(e);
+        handleNotificationInsert();
       } else {
         Alert.alert("You already purchased the game!");
       }
@@ -152,6 +153,29 @@ const GameInfo = () => {
       console.log(error);
     }
     setBalance(helper);
+  };
+
+  const handleNotificationInsert = async (e) => {
+    if (!gameExists) {
+      const { data, error } = await supabase
+        .from("notifications")
+        .insert({
+          desc: "New game added to your collection",
+          imgUrl: imgUrl,
+          userId: userId,
+        })
+        .select();
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        console.log(data);
+        setGameExists(true);
+      }
+    } else {
+      Alert.alert("You already own that game!");
+    }
   };
 
   return (

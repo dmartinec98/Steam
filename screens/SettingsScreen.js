@@ -17,6 +17,7 @@ const SettingsScreen = ({ route }) => {
   const { userId } = route.params;
   const navigation = useNavigation();
   const [gamesOwned, setGamesOwned] = useState(0);
+  const [friends, setFriends] = useState(0);
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -30,6 +31,18 @@ const SettingsScreen = ({ route }) => {
       }
     };
 
+    const fetchFriends = async () => {
+      const { data, count } = await supabase
+        .from("friends")
+        .select("*", { count: "exact", head: true })
+        .eq("userId", userId);
+
+      if (count) {
+        setFriends(count);
+      }
+    };
+
+    fetchFriends();
     fetchGames();
   }, []);
 
@@ -49,11 +62,11 @@ const SettingsScreen = ({ route }) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Friends", {});
+              navigation.navigate("Friends", { userId: userId });
             }}
             className="rounded-md bg-gray-200 p-2 w-1/4"
           >
-            <Text className="text-center">34</Text>
+            <Text className="text-center">{friends}</Text>
             <Text className="text-center">Friends</Text>
           </TouchableOpacity>
           <TouchableOpacity

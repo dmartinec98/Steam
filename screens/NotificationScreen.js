@@ -2,9 +2,12 @@ import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import HeaderComponent from "../components/HeaderComponent";
 import ChatListItem from "../components/ChatListItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const NotificationScreen = () => {
+import supabase from "../config/supabaseService";
+
+const NotificationScreen = ({ route }) => {
+  const { userId } = route.params;
   const [notification, setNotification] = useState([
     {
       id: "123",
@@ -25,6 +28,28 @@ const NotificationScreen = () => {
       desc: "Sushi2 added you",
     },
   ]);
+  const [fetchError, setFetchError] = useState(null);
+
+  useEffect(() => {
+    const fetchNot = async () => {
+      const { data, error } = await supabase
+        .from("notifications")
+        .select()
+        .eq("userId", userId);
+
+      if (error) {
+        setFetchError("Could not fetch the notifications!");
+        setNotification(null);
+      }
+
+      if (data) {
+        setNotification(data);
+        setFetchError(null);
+      }
+    };
+
+    fetchNot();
+  }, []);
 
   return (
     <View>
